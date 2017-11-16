@@ -1,0 +1,16 @@
+<span class="text-uppercase font-weight-bold"> {{category.title}} </span>
+<i class="fa fa-times" (click)="dataService.removeCategory(category)" aria-hidden="true"></i>
+<i (click)="editing=true" class="fa fa-plus plus-icon"></i>
+<form *ngIf="editing" class="form-inline mx-4">
+  <input class="form-control" [(ngModel)]='newSubCategoryText' [ngModelOptions]="{standalone: true}" />
+  <button (click)="addSubCategory(newSubCategoryText)" class="btn btn-outline-secondary">
+        Save
+      </button>
+</form>
+
+<ul>
+  <li *ngFor="let subCategory of category.subCategories; index as i">
+    {{i + 1}}), {{subCategory.title}}
+    <i class="fa fa-times" (click)="dataService.removeSubCategory(subCategory, category)"></i>
+  </li>
+</ul>

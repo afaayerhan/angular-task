@@ -1,0 +1,25 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<header>
+  <nav class="nav inner-header">
+    <i (click)="toggleEditing()" class="fa fa-plus plus-icon align-self-center"></i>
+    <button (click)="toggleEditing()" class="btn btn-light">Add Category</button>
+    <form *ngIf="editing" class="form-inline mx-4">
+      <input class="form-control" [(ngModel)]='newCategoryText' [ngModelOptions]="{standalone: true}" />
+      <button (click)="addCategory(newCategoryText)" class="btn btn-outline-secondary">
+        Save
+      </button>
+    </form>
+  </nav>
+
+</header>
+<div class="container">
+  <div class="row">
+
+    <ng-template ngFor let-odd="odd" let-category [ngForOf]="categoryStore.categories">
+      <div class="col">
+        <app-category [category]="category"></app-category>
+      </div>
+      <div *ngIf="odd" class="w-100"></div>
+    </ng-template>
+  </div>
+</div>
